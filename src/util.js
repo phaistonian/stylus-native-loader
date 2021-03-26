@@ -1,4 +1,7 @@
 import path from 'path'
+import { parse } from 'url';
+import { Compiler, nodes, utils } from 'stylus';
+
 
 /**
  * @param {Object} context The loader context
@@ -80,3 +83,82 @@ export function resolveTildePath(importPath) {
 		return path.dirname(resolved)
 	}
 }
+
+
+
+export function urlResolver(options = {}) {
+  function resolver(url) {
+    const compiler = new Compiler(url);
+    const { filename } = url;
+
+    compiler.isURL = true;
+
+    const visitedUrl = url.nodes.map((node) => compiler.visit(node)).join("");
+    const splitted = visitedUrl.split("!");
+
+    const parsedUrl = parse(splitted.pop());
+
+    // Parse literal
+    const literal = new nodes.Literal(`url("${parsedUrl.href}")`);
+    let { pathname } = parsedUrl;
+    let { dest } = this.options;
+    let tail = "";
+    let res;
+
+    // Absolute or hash
+    if (parsedUrl.protocol || !pathname || pathname[0] === "/") {
+      return literal;
+    }
+
+    // Check that file exists
+    if (!options.nocheck) {
+      // eslint-disable-next-line no-underscore-dangle
+      const _paths = options.paths || [];
+
+      pathname = utils.lookup(pathname, _paths.concat(this.paths));
+
+      if (!pathname) {
+        return literal;
+      }
+    }
+
+    if (this.includeCSS && path.extname(pathname) === ".css") {
+      return new nodes.Literal(parsedUrl.href);
+    }
+
+    if (parsedUrl.search) {
+      tail += parsedUrl.search;
+    }
+
+    if (parsedUrl.hash) {
+      tail += parsedUrl.hash;
+    }
+
+    if (dest && path.extname(dest) === ".css") {
+      dest = path.dirname(dest);
+    }
+
+    res =
+      path.relative(
+        dest || path.dirname(this.filename),
+        options.nocheck ? path.join(path.dirname(filename), pathname) : pathname
+      ) + tail;
+
+    if (path.sep === "\\") {
+      res = res.replace(/\\/g, "/");
+    }
+
+    splitted.push(res);
+
+    return new nodes.Literal(`url("${splitted.join("!")}")`);
+  }
+
+  resolver.options = options;
+  resolver.raw = true;
+
+  return resolver;
+}
+
+module.exports = {
+  urlResolver,
+};

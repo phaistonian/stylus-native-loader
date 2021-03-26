@@ -1,10 +1,10 @@
-import path from 'path'
+import path, { resolve } from 'path'
 import { promises as fs } from 'fs'
 
 import stylus from 'stylus'
 
 import getAliasEvaluator from './evaluator'
-import { getOptions, isObject, castArray } from './util'
+import { getOptions, isObject, castArray, urlResolver } from './util'
 
 export default function stylusLoader(source) {
 	const callback = this.async()
@@ -83,7 +83,8 @@ export default function stylusLoader(source) {
 			options.resolveUrl = {}
 		}
 
-		styl.define('url', stylus.resolver(options.resolveUrl))
+		// styl.define('url',stylus.resolver(options.resolveUrl))
+		styl.define('url', urlResolver(options.resolveUrl))
 	}
 
 	// define global variables/functions

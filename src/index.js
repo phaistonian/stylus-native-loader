@@ -79,9 +79,9 @@ export default function stylusLoader(source) {
 
 	// enable resolver for relative urls
 	if (options.resolveUrl) {
-		if (!isObject(options.resolveUrl)) {
-			options.resolveUrl = {}
-		}
+		// if (!isObject(options.resolveUrl)) {
+			// options.resolveUrl = {}
+		// }
 
 		// styl.define('url',stylus.resolver(options.resolveUrl))
 		styl.define('url', urlResolver(options.resolveUrl))

@@ -84,8 +84,6 @@ export function resolveTildePath(importPath) {
 	}
 }
 
-
-
 export function urlResolver(options = {}) {
   function resolver(url) {
     const compiler = new Compiler(url);
@@ -158,7 +156,3 @@ export function urlResolver(options = {}) {
 
   return resolver;
 }
-
-module.exports = {
-  urlResolver,
-};

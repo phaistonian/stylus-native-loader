@@ -206,7 +206,7 @@ exports[`loader should generate source maps accordingly: output 1`] = `
 Object {
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
-  "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
+  "sourceRoot": "/Users/phaistonian/WWW/stylus-native-loader/test/fixtures",
   "sources": Array [
     "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",
@@ -238,7 +238,7 @@ exports[`loader should generate source maps accordingly: output 2`] = `
 Object {
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
-  "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
+  "sourceRoot": "/Users/phaistonian/WWW/stylus-native-loader/test/fixtures",
   "sources": Array [
     "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",
@@ -270,7 +270,7 @@ exports[`loader should generate source maps accordingly: output 3`] = `
 Object {
   "mappings": "AAKA;EAFC,OAAM,oBAAN;;ACHD;EDGC,OAAM,KAAN;;AEHD;EFGC,OAAM,KAAN;;AGHD;EHGC,OAAM,KAAN",
   "names": Array [],
-  "sourceRoot": "/x/packages/stylus-native-loader/test/fixtures",
+  "sourceRoot": "/Users/phaistonian/WWW/stylus-native-loader/test/fixtures",
   "sources": Array [
     "test/fixtures/basic.styl",
     "test/fixtures/imports/a.styl",

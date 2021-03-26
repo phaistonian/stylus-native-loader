@@ -172,7 +172,3 @@ function urlResolver(options = {}) {
   resolver.raw = true;
   return resolver;
 }
-
-module.exports = {
-  urlResolver
-};

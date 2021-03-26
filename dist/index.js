@@ -89,11 +89,10 @@ function stylusLoader(source) {
 
 
   if (options.resolveUrl) {
-    if (!(0, _util.isObject)(options.resolveUrl)) {
-      options.resolveUrl = {};
-    } // styl.define('url',stylus.resolver(options.resolveUrl))
-
-
+    // if (!isObject(options.resolveUrl)) {
+    // options.resolveUrl = {}
+    // }
+    // styl.define('url',stylus.resolver(options.resolveUrl))
     styl.define('url', (0, _util.urlResolver)(options.resolveUrl));
   } // define global variables/functions
 

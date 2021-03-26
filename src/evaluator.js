@@ -51,6 +51,12 @@ export default function getAliasEvaluator(context, aliases, resolveTilde) {
 				node.string = resolveAlias(node.string)
 			}
 
+			// Handle '!(index)*.styl' issue
+			// The issue seems to be that the current path is not rsolved
+			if (node.string[0] === '!') {
+        node.string = [path.dirname(node.filename), node.string].join('/');
+      }
+
 			return super.visitImport(imported)
 		}
 	}
